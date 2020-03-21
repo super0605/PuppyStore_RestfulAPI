@@ -38,16 +38,30 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'puppies',
-    'rest_framework'
+    'puppy_auth',
+    'rest_framework',
+    'rest_framework.authtoken', # Add this line
+    'rest_auth',  
 ]
+
+# CUSTOM AUTH MODEL
+AUTH_USER_MODEL = 'puppy_auth.User'
 
 # REST Framework
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
-    'DEFAULT_PERMISSION_CLASSES': [],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ),
     'TEST_REQUEST_DEFAULT_FORMAT': 'json'
 }
+REST_USE_JWT = True
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

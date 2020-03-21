@@ -23,5 +23,6 @@ urlpatterns = [
         r'^api-auth/',
         include('rest_framework.urls', namespace='rest_framework')
     ),
+    url(r'^api/', include('puppy_auth.urls')),
     path('admin/', admin.site.urls),
 ]
