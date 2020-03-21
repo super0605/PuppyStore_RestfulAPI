@@ -18,11 +18,11 @@ from django.urls import path
 from django.conf.urls import include, url
 
 urlpatterns = [
-    url(r'^', include('puppies.urls')),
+    url(r'^api/v1/', include('puppies.urls')),
     url(
         r'^api-auth/',
         include('rest_framework.urls', namespace='rest_framework')
     ),
-    url(r'^api/', include('puppy_auth.urls')),
+    url(r'^api/v1/', include('puppy_auth.urls')),
     path('admin/', admin.site.urls),
 ]
